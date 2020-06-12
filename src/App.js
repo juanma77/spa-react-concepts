@@ -14,9 +14,15 @@ class Hello extends Component {
 
 class Text extends Component {
   render(){
-    const myBooleanText = this.props.myBoolean ? 'True' : 'False';
 
-    const mappedArrayNumbers = this.props.arrayNumbers.map( number => number*2 );
+    // Esto es una desestrucutración para poder utilizar el "this.props" en lugar de escribir el nombre de la variable arrayNumbers o del método multiply
+    const { arrayNumbers, myBoolean, multiplyFunction, objectsInfo, title } = this.props;
+
+    const myBooleanText = myBoolean ? 'True' : 'False';
+
+    //const mappedArrayNumbers = arrayNumbers.map( number => number*2 );
+
+    const mappedArrayNumbers = arrayNumbers.map(multiplyFunction);
 
     return (
       <div className="main-div">
@@ -24,10 +30,11 @@ class Text extends Component {
         <p>{ this.props.myNumber }</p>
         <p>{ JSON.stringify(this.props.myBoolean) }</p>
         <p>{ myBooleanText } </p>  
-
         <p>{ this.props.arrayNumbers.join(' , ') }</p>
+
         <p>{ mappedArrayNumbers.join(' , ') }</p> 
-        <p>{ this.props.objects.key }</p>
+        <p>{ objectsInfo.key }</p>
+        { title }
 
       </div>
     );
@@ -49,7 +56,9 @@ class App extends Component {
         myNumber={ 2 } 
         myBoolean={ true } 
         arrayNumbers={[ 2, 3, 10 ]}
-        objects= {{ key: 'First value', key2: 'Other value' }}/> 
+        objectsInfo= {{ key: 'First value', key2: 'Other value' }}
+        multiplyFunction = { (number)=> number * 4 }
+        title = { <h1>Este es mi título</h1>   } /> 
       </div>
     );
   }
