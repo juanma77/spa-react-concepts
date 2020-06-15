@@ -35,11 +35,16 @@ class Text extends Component {
         <p>{ mappedArrayNumbers.join(' , ') }</p> 
         <p>{ objectsInfo.key }</p>
         { title }
+        <p>These are my Default Props:  { this.props.myDefaultProps }</p>   
 
       </div>
     );
   }
 }
+
+Text.defaultProps = {
+  myDefaultProps : 'Here are my default props!'
+};
 
 class App extends Component {
   render(){
@@ -58,7 +63,8 @@ class App extends Component {
         arrayNumbers={[ 2, 3, 10 ]}
         objectsInfo= {{ key: 'First value', key2: 'Other value' }}
         multiplyFunction = { (number)=> number * 4 }
-        title = { <h1>Este es mi título</h1>   } /> 
+        title = { <h1>Este es mi título</h1>   } 
+        myDefaultProps= 'Estas props por defecto han cambiado ya que están en otro componente'/> 
       </div>
     );
   }
