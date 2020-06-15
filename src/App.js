@@ -42,6 +42,22 @@ class Text extends Component {
   }
 }
 
+class Contador extends Component {
+
+  constructor(){
+    super()
+    this.state = { contador: 1 }
+  }
+
+  render(){
+
+    //const contador = 0; 
+    return (
+      <span> { this.state.contador }</span>
+    )
+  }
+}
+
 Text.defaultProps = {
   myDefaultProps : 'Here are my default props!'
 };
@@ -54,9 +70,11 @@ class App extends Component {
           <img src={ logo } className="App-logo" alt="logo"/>
           <Hello title='Hello from props!'/>
         </div>
+
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
-        </p> 
+        </p>
+
         <Text myText='Este es mi texto' 
         myNumber={ 2 } 
         myBoolean={ true } 
@@ -65,6 +83,9 @@ class App extends Component {
         multiplyFunction = { (number)=> number * 4 }
         title = { <h1>Este es mi título</h1>   } 
         myDefaultProps= 'Estas props por defecto han cambiado ya que están en otro componente'/> 
+
+        <Contador/>
+
       </div>
     );
   }
