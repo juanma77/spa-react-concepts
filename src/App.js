@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-// React es declarativo y reactivo; declarativo porque le decimos qué renderizar pero no cómo y reactivo porque reacciona a los cambios en los componentes 
+// React es declarativo y reactivo; declarativo porque le decimos qué renderizar pero no cómo y reactivo porque reacciona a los cambios en los componentes. El flujo de información en React es unidireccional, esto quiere decir que los datos fluyen sólo de componentes padres a componentes hijos, y cuando pasamos propiedades de hijos a padres, cada vez que un dato cambia en el padre también lo hará en el hijo
 class Hello extends Component {
 
   // Render es para pintar el elemento en pantalla
@@ -63,10 +63,31 @@ class Contador extends Component {
   render(){
 
     //const contador = 0; 
+
+    // Aquí renderizamos el componente hijo ContadorHijo y le mandamos como propiedad "propiedadHijo" con el valor que tiene this.state.contador aquí en el componente Contador 
     return (
-      <span> { this.state.contador }</span>
+      <div> 
+        <p>Contador del componente padre: </p>
+        { this.state.contador }
+
+        <ContadorHijo propiedadHijo = { this.state.contador }/>
+      </div>
     )
   }
+}
+
+class ContadorHijo extends Component {
+
+  // La propiedad "propiedadHijo" que enviamos desde el componente padre Contador a este componente hijo ContadorHijo la recibimos aquí; debe de tener el mismo nombre en un componente y otro. 
+  render(){
+    return (
+      <div>
+        <p>Contador del componente hijo:</p>
+        { this.props.propiedadHijo }
+      </div>
+    )
+  }
+
 }
 
 Text.defaultProps = {
