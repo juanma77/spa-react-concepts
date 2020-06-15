@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+// React es declarativo y reactivo; declarativo porque le decimos qué renderizar pero no cómo y reactivo porque reacciona a los cambios en los componentes 
 class Hello extends Component {
 
   // Render es para pintar el elemento en pantalla
@@ -44,10 +45,20 @@ class Text extends Component {
 
 class Contador extends Component {
 
+  // El state es inmutable, asíncrono y sólo lo podemos actualizar utilizando el método setState()
   constructor(){
     super()
     this.state = { contador: 1 }
+
+    setInterval(() =>{
+      this.setState({ 
+        contador : this.state.contador + 1
+      });
+    }, 1000);
   }
+
+  // Una nueva actualización de Javascript permitirá inicializar el state como un Class Field; para así no usar más el constructor y el super 
+  // state = { contador: 10 };
 
   render(){
 
