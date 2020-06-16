@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import  ConditionalComponent from './components/ConditionalComponent';
 
 // React es declarativo y reactivo; declarativo porque le decimos qué renderizar pero no cómo y reactivo porque reacciona a los cambios en los componentes. 
 
@@ -156,6 +157,8 @@ class App extends Component {
         myDefaultProps= 'Estas props por defecto han cambiado porque las mandamos en este componente Text'/> 
 
         <Contador initialCounter = { 100 }/>
+
+        <ConditionalComponent/>
 
       </div>
     );
