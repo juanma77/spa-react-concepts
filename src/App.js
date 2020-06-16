@@ -2,27 +2,29 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-// React es declarativo y reactivo; declarativo porque le decimos qué renderizar pero no cómo y reactivo porque reacciona a los cambios en los componentes. El flujo de información en React es unidireccional, esto quiere decir que los datos fluyen sólo de componentes padres a componentes hijos, y cuando pasamos propiedades de hijos a padres, cada vez que un dato cambia en el padre también lo hará en el hijo
+// React es declarativo y reactivo; declarativo porque le decimos qué renderizar pero no cómo y reactivo porque reacciona a los cambios en los componentes. 
+
+// El flujo de información en React es unidireccional, esto quiere decir que los datos fluyen sólo de componentes padres a componentes hijos, y cuando pasamos propiedades de hijos a padres, cada vez que un dato cambia en el padre también lo hará en el hijo.
+
+// Render es para pintar el elemento en pantalla.
 class Hello extends Component {
 
-  // Render es para pintar el elemento en pantalla
   render(){
     return (
       <h2>{ this.props.title }</h2>
     );
   }
+
 }
 
+ // Esto es una desestrucutración para poder utilizar el "this.props" en lugar de escribir el nombre de la variable arrayNumbers o del método multiply. 
+
 class Text extends Component {
+
   render(){
-
-    // Esto es una desestrucutración para poder utilizar el "this.props" en lugar de escribir el nombre de la variable arrayNumbers o del método multiply
     const { arrayNumbers, myBoolean, multiplyFunction, objectsInfo, title } = this.props;
-
     const myBooleanText = myBoolean ? 'True' : 'False';
-
     //const mappedArrayNumbers = arrayNumbers.map( number => number*2 );
-
     const mappedArrayNumbers = arrayNumbers.map(multiplyFunction);
 
     return (
@@ -32,23 +34,26 @@ class Text extends Component {
         <p>{ JSON.stringify(this.props.myBoolean) }</p>
         <p>{ myBooleanText } </p>  
         <p>{ this.props.arrayNumbers.join(' , ') }</p>
-
         <p>{ mappedArrayNumbers.join(' , ') }</p> 
         <p>{ objectsInfo.key }</p>
         { title }
         <p>These are my Default Props:  { this.props.myDefaultProps }</p>   
-
       </div>
     );
   }
+
 }
 
-class Contador extends Component {
+ // El state es inmutable, asíncrono y sólo lo podemos actualizar utilizando el método setState(). Cuando utilizamos props para inicializar el state debemos pasarlas como argumentos en el constructor y en el super.
+ 
+ // Una nueva actualización de Javascript permitirá inicializar el state como un Class Field; para así no usar más el constructor y el super 
 
-  // El state es inmutable, asíncrono y sólo lo podemos actualizar utilizando el método setState()
-  constructor(){
-    super()
-    this.state = { contador: 1 }
+class Contador extends Component {
+ 
+  constructor(props){
+    super(props)
+    //this.state = { contador: 1 }
+    this.state = { contador: this.props.initialCounter }
 
     setInterval(() =>{
       this.setState({ 
@@ -57,11 +62,9 @@ class Contador extends Component {
     }, 1000);
   }
 
-  // Una nueva actualización de Javascript permitirá inicializar el state como un Class Field; para así no usar más el constructor y el super 
   // state = { contador: 10 };
 
   render(){
-
     //const contador = 0; 
 
     // Aquí renderizamos el componente hijo ContadorHijo y le mandamos como propiedad "propiedadHijo" con el valor que tiene this.state.contador aquí en el componente Contador 
@@ -94,6 +97,10 @@ Text.defaultProps = {
   myDefaultProps : 'Here are my default props!'
 };
 
+Contador.defaultProps = {
+  initialCounter: 0
+};
+
 class App extends Component {
   render(){
     return(
@@ -116,7 +123,7 @@ class App extends Component {
         title = { <h1>Este es mi título</h1>   } 
         myDefaultProps= 'Estas props por defecto han cambiado ya que están en otro componente'/> 
 
-        <Contador/>
+        <Contador initialCounter = { 100 }/>
 
       </div>
     );
