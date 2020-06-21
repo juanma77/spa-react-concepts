@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import  ConditionalComponent from './components/ConditionalComponent';
+import CarItemComponent from './components/CarItemComponent';
+
+import cars from './cars.json';
 
 // React es declarativo y reactivo; declarativo porque le decimos qué renderizar pero no cómo y reactivo porque reacciona a los cambios en los componentes. 
 
@@ -14,7 +17,9 @@ class Hello extends Component {
 
   render(){
     return (
-      <h2>{ this.props.title }</h2>
+      <div>
+        <p>{ this.props.title }</p>
+      </div>
     );
   }
 
@@ -78,7 +83,17 @@ class Text extends Component {
         
           { numbers.map(( number, index ) =>{
             return <p key= { index }> Soy el número { number } </p>
-          }) }
+          }) 
+          }
+
+        <ul>
+          { 
+            cars.map(car =>{
+              return <CarItemComponent key={ car.id } car={ car }/>
+            }) 
+
+          }
+        </ul>      
     
       </div>
     );
