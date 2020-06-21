@@ -38,6 +38,9 @@ class Text extends Component {
     //const mappedArrayNumbers = arrayNumbers.map( number => number*2 );
     const mappedArrayNumbers = arrayNumbers.map(multiplyFunction);
 
+    // Para mapear una lista
+    const numbers = [ 1, 2, 3, 4, 5 ]; 
+
     return (
       <div className="main-div">
         <p>
@@ -70,6 +73,13 @@ class Text extends Component {
         <p>
           Estas son propiedades por defecto:  { this.props.myDefaultProps }
         </p>   
+
+        <h1> Using map function for a list </h1>
+        
+          { numbers.map(( number, index ) =>{
+            return <p key= { index }> Soy el número { number } </p>
+          }) }
+    
       </div>
     );
   }

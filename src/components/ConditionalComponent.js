@@ -4,7 +4,9 @@ class FirstComponent extends Component {
 
     render() {
         return (
-            <p>Componente A</p>
+            <div>
+                 <p>Componente A</p>
+            </div>
         )
     }
 
@@ -14,7 +16,9 @@ class SecondComponent extends Component {
 
     render() {
         return (
-            <p>Componente B</p>
+            <div>
+                 <p>Componente B</p>
+            </div>
         )
     }
 }
@@ -24,7 +28,7 @@ class LoginButton extends Component {
     render(){
         return (
             <div>
-                <button class="btn btn-primary">
+                <button className="btn btn-primary">
                     Iniciar sesión 
                 </button>
             </div>
@@ -39,7 +43,7 @@ class LogoutButton extends Component {
         return (
             <div>
                 <p>¡Bienvenido Usuario!</p>
-                <button class="btn btn-danger">
+                <button className="btn btn-danger">
                     Cerrar sesión 
                 </button>
 
