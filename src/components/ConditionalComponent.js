@@ -19,31 +19,71 @@ class SecondComponent extends Component {
     }
 }
 
+class LoginButton extends Component {
 
+    render(){
+        return (
+            <div>
+                <button class="btn btn-primary">
+                    Iniciar sesión 
+                </button>
+            </div>
+        )
+    }
+
+}
+
+class LogoutButton extends Component {
+
+    render() {
+        return (
+            <div>
+                <p>¡Bienvenido Usuario!</p>
+                <button class="btn btn-danger">
+                    Cerrar sesión 
+                </button>
+
+            </div>
+        )
+    }
+}
+
+/*
+const useRenderingConditional = (showFirstComponent) =>{
+    if( showFirstComponent ) {
+        return <FirstComponent/>
+    } else {
+        return <SecondComponent/>
+    }
+}*/
+
+// Aquí usamos el renderizado condicional con una expresión ternaria 
 export default class ConditionalComponent extends Component {
 
-    useRenderingConditional = (showFirstComponent) =>{
-        if( showFirstComponent ) {
-            return <FirstComponent/>
-        } else {
-            return <SecondComponent/>
-        }
-    }
 
     constructor(){
         super();
-        this.state = { showFirstComponent: true };
+        this.state = { showFirstComponent: true, isUserLogged: true };
         
     }
 
     render(){
-
         return (
             <div>
                 <h1>Renderizado Condicional</h1>
                 <div>
                     <p>Llamando a la función useRenderingConditional: </p>
-                    <p> { this.useRenderingConditional(this.state.showFirstComponent) } </p>
+                    <p> 
+                        { this.state.showFirstComponent 
+                        ? <FirstComponent/>
+                        : <SecondComponent/>  } 
+                    </p>
+
+                    <p>
+                       { this.state.isUserLogged ? <LogoutButton/> : <LoginButton/> } 
+                        
+                    </p>        
+
                 </div>
 
             </div>
